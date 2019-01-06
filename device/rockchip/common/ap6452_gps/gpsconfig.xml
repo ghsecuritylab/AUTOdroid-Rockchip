@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glgps xmlns="http://www.glpals.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.glpals.com/ glconfig.xsd" >
+  <!--HAL Confguration LogDirectory="/data/gps/log" -->
+  <hal 
+       acPortName="/dev/ttyS3"
+       lBaudRate="115200"
+       Log="LOGCAT"
+       GpioNStdbyPath="/sys/class/gpio/gpio27/value"
+       cLogEnabled="true"
+  />
+
+  <gll 
+       LogPriMask="LOG_DEBUG"
+       LogFacMask="LOG_GLLAPI | LOG_DEVIA | LOG_NMEA | LOG_RAWDATA | LOG_DEVMS | LOG_ASIC_IO | LOG_BBTEST | LOG_DEVET | LOG_MESM | LOG_DEVKF | LOG_DEVJG | LOG_DEVMR"
+       FrqPlan="FRQ_PLAN_26MHZ_2PPM"
+       RfType="GL_RF_4752_BRCM_EXT_LNA"
+  />
+
+</glgps>

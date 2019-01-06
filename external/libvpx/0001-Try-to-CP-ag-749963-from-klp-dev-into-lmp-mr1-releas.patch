@@ -1,0 +1,41 @@
+From 0ed2128c9a66f9ab700d22080486389a1dd08d59 Mon Sep 17 00:00:00 2001
+From: Baligh Uddin <baligh@google.com>
+Date: Tue, 1 Sep 2015 14:38:43 -0700
+Subject: [PATCH 1/2] Try to CP ag/749963 from klp-dev into lmp-mr1-release
+
+Bug: 22943772
+---
+ armv7a-neon/vp8_rtcd.h         | 3 +--
+ libvpx/vp8/common/rtcd_defs.pl | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/armv7a-neon/vp8_rtcd.h b/armv7a-neon/vp8_rtcd.h
+index 17c08b6..d1741c5 100644
+--- a/armv7a-neon/vp8_rtcd.h
++++ b/armv7a-neon/vp8_rtcd.h
+@@ -33,8 +33,7 @@ void vp8_bilinear_predict16x16_neon(unsigned char *src, int src_pitch, int xofst
+ 
+ void vp8_bilinear_predict4x4_c(unsigned char *src, int src_pitch, int xofst, int yofst, unsigned char *dst, int dst_pitch);
+ void vp8_bilinear_predict4x4_armv6(unsigned char *src, int src_pitch, int xofst, int yofst, unsigned char *dst, int dst_pitch);
+-void vp8_bilinear_predict4x4_neon(unsigned char *src, int src_pitch, int xofst, int yofst, unsigned char *dst, int dst_pitch);
+-#define vp8_bilinear_predict4x4 vp8_bilinear_predict4x4_neon
++#define vp8_bilinear_predict4x4 vp8_bilinear_predict4x4_armv6
+ 
+ void vp8_bilinear_predict8x4_c(unsigned char *src, int src_pitch, int xofst, int yofst, unsigned char *dst, int dst_pitch);
+ void vp8_bilinear_predict8x4_armv6(unsigned char *src, int src_pitch, int xofst, int yofst, unsigned char *dst, int dst_pitch);
+diff --git a/libvpx/vp8/common/rtcd_defs.pl b/libvpx/vp8/common/rtcd_defs.pl
+index 130d965..9bf1556 100644
+--- a/libvpx/vp8/common/rtcd_defs.pl
++++ b/libvpx/vp8/common/rtcd_defs.pl
+@@ -233,7 +233,7 @@ specialize qw/vp8_bilinear_predict8x4 mmx media neon/;
+ $vp8_bilinear_predict8x4_media=vp8_bilinear_predict8x4_armv6;
+ 
+ add_proto qw/void vp8_bilinear_predict4x4/, "unsigned char *src, int src_pitch, int xofst, int yofst, unsigned char *dst, int dst_pitch";
+-specialize qw/vp8_bilinear_predict4x4 mmx media neon/;
++specialize qw/vp8_bilinear_predict4x4 mmx media/;
+ $vp8_bilinear_predict4x4_media=vp8_bilinear_predict4x4_armv6;
+ 
+ #
+-- 
+2.7.0.rc3.207.g0ac5344
+

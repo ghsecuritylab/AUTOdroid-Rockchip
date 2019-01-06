@@ -57,7 +57,6 @@ download "platform/external/chromium-trace" "external/chromium-trace" "0d58d5ea0
 download "platform/external/chromium_org/sdch/open-vcdiff" "external/chromium_org/sdch/open-vcdiff" "6d634da5463d9bc5fc88f86aec1d2ac4fe6f612e"
 download "platform/external/chromium_org/testing/gtest" "external/chromium_org/testing/gtest" "f2c08b9201e74d4896de174d47403a2486c9cf31"
 download "platform/external/chromium_org/third_party/WebKit" "external/chromium_org/third_party/WebKit" "febf6a42ef603f522e427610c048d3ea4da2371b"
-download "platform/external/chromium_org/third_party/angle" "external/chromium_org/third_party/angle" "b2d0531d1e6d1188c79bb94165ff992ad28a57a5"
 download "platform/external/chromium_org/third_party/boringssl/src" "external/chromium_org/third_party/boringssl/src" "7c4e52cd7aebb9f2fa64355c58bc75509685da94"
 download "platform/external/chromium_org/third_party/brotli/src" "external/chromium_org/third_party/brotli/src" "96f298ac43a9216b251d6c3264d8f5ada89e107f"
 download "platform/external/chromium_org/third_party/eyesfree/src/android/java/src/com/googlecode/eyesfree/braille" "external/chromium_org/third_party/eyesfree/src/android/java/src/com/googlecode/eyesfree/braille" "bb4c72f1deb0b8b2b0468b0bf1050462ebcf6135"
