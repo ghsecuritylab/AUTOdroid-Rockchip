@@ -16,10 +16,10 @@
 
 	aliases {
 		serial0 = &uart_bt;
-		serial1 = &uart_bb;
+		serial1 = &uart_gps;
 		serial2 = &uart_dbg;
-		serial3 = &uart_gps;
-		serial4 = &uart_exp;
+		serial3 = &uart_exp;
+		serial4 = &uart_bta;
 		i2c0 = &i2c0;
 		i2c1 = &i2c1;
 		i2c2 = &i2c2;
@@ -421,13 +421,14 @@
 		status = "disabled";
 	};
 
-	uart_bb: serial@ff190000 {
+	uart_gps: serial@ff190000 {
 		compatible = "rockchip,serial";
 		reg = <0xff190000 0x100>;
 		interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
 		clock-frequency = <24000000>;
 		clocks = <&clk_uart1>, <&clk_gates6 9>;
 		clock-names = "sclk_uart", "pclk_uart";
+		current-speed = <9600>;
 		reg-shift = <2>;
 		reg-io-width = <4>;
 		dmas = <&pdma1 3>, <&pdma1 4>;
@@ -453,14 +454,13 @@
 		status = "disabled";
 	};
 
-	uart_gps: serial@ff1b0000 {
+	uart_exp: serial@ff1b0000 {
 		compatible = "rockchip,serial";
 		reg = <0xff1b0000 0x100>;
 		interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
 		clock-frequency = <24000000>;
 		clocks = <&clk_uart3>, <&clk_gates6 11>;
 		clock-names = "sclk_uart", "pclk_uart";
-		current-speed = <115200>;
 		reg-shift = <2>;
 		reg-io-width = <4>;
 		dmas = <&pdma1 7>, <&pdma1 8>;
@@ -470,7 +470,7 @@
 		status = "disabled";
 	};
 
-	uart_exp: serial@ff1c0000 {
+	uart_bta: serial@ff1c0000 {
 		compatible = "rockchip,serial";
 		reg = <0xff1c0000 0x100>;
 		interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
