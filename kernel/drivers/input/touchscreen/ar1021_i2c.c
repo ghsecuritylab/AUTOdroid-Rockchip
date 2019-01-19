@@ -33,7 +33,7 @@ struct ar1021_i2c {
 	bool swap_xy;
 };
 
-static bool ar1021_get_prop_u32(struct device *dev,
+static bool ar1021_get_prop_u32(struct device_node *np,
 				     const char *property,
 				     unsigned int default_value,
 				     unsigned int *value)
@@ -41,7 +41,7 @@ static bool ar1021_get_prop_u32(struct device *dev,
 	u32 val;
 	int error;
 
-	error = device_property_read_u32(dev, property, &val);
+	error = of_property_read_u32(np, property, &val);
 	if (error) {
 		*value = default_value;
 		return false;
@@ -126,6 +126,7 @@ static void ar1021_i2c_close(struct input_dev *dev)
 static int ar1021_i2c_probe(struct i2c_client *client,
 			    const struct i2c_device_id *id)
 {
+	struct device_node *np = client->dev.of_node;
 	struct ar1021_i2c *ar1021;
 	struct input_dev *input;
 	int error;
@@ -154,11 +155,11 @@ static int ar1021_i2c_probe(struct i2c_client *client,
 	input->open = ar1021_i2c_open;
 	input->close = ar1021_i2c_close;
 
-	ar1021->invert_x = device_property_read_bool(&client->dev, "touchscreen-inverted-x");
-	ar1021->invert_y = device_property_read_bool(&client->dev, "touchscreen-inverted-y");
-	ar1021->swap_xy = device_property_read_bool(&client->dev, "touchscreen-swapped-x-y");
+	ar1021->invert_x = of_property_read_bool(np, "touchscreen-inverted-x");
+	ar1021->invert_y = of_property_read_bool(np, "touchscreen-inverted-y");
+	ar1021->swap_xy = of_property_read_bool(np, "touchscreen-swapped-x-y");
 
-	data_present = ar1021_get_prop_u32(&client->dev,
+	data_present = ar1021_get_prop_u32(np,
 						"touchscreen-offset-x",
 						0,
 						&offset_x);
@@ -166,7 +167,7 @@ static int ar1021_i2c_probe(struct i2c_client *client,
 	if (data_present)
 		dev_info(&client->dev, "touchscreen-offset-x: %d\n", offset_x);
 
-	data_present = ar1021_get_prop_u32(&client->dev,
+	data_present = ar1021_get_prop_u32(np,
 						"touchscreen-offset-y",
 						0,
 						&offset_y);
